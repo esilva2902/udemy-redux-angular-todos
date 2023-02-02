@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
-import { AppState } from 'src/app/app.reducer';
+import { AppState } from '../../app.reducer';
 import * as actions from '../todo.actions';
 
 @Component({
   selector: 'app-todo-add',
   templateUrl: './todo-add.component.html',
-  styleUrls: ['./todo-add.component.scss']
+  styleUrls: ['./todo-add.component.scss'],
+
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoAddComponent {
 
