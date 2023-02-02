@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Store } from '@ngrx/store';
 
+import { filterType } from 'src/app/filter/filter.actions';
 import { AppState } from '../../app.reducer';
 import { Todo } from '../models/todo.model';
 
@@ -15,21 +16,23 @@ import { Todo } from '../models/todo.model';
 export class TodoListComponent implements OnInit {
 
   todos: Todo[];
+  currentFilter: filterType;
 
   constructor(
     private cdr: ChangeDetectorRef,
     private store: Store<AppState>) {
 
     this.todos = [ ];
+    this.currentFilter = 'all';
   }
 
   ngOnInit(): void {
-    this.store.select(appState => appState.todos)
-      .subscribe({
-        next: todos => {
-          this.todos = todos;
-          this.cdr.markForCheck();
-        }
-      });
+    this.store.subscribe({
+      next: appState => {
+        this.todos = appState.todos;
+        this.currentFilter = appState.filter.appliedFilter;
+        this.cdr.markForCheck();
+      }
+    });
   }
 }

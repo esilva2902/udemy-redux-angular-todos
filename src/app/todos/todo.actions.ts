@@ -20,7 +20,11 @@ export const deleteTodo = createAction(
   props<{ id: number }>()
 );
 
-export const toogleAll = createAction(
-  '[TODO] Toogle All',
+export const toggleAll = createAction(
+  '[TODO] Toggle All',
   props<{ allCompleted: boolean }>()
+);
+
+export const removeAllCompleted = createAction(
+  '[TODO] Remove All Completed'
 );

@@ -23,8 +23,8 @@ export class TodoPageComponent {
     this.allCompleted = false;
   }
 
-  onToogleAll(): void {
+  onToggleAll(): void {
     this.allCompleted = !this.allCompleted;
-    this.store.dispatch(actions.toogleAll({ allCompleted: this.allCompleted }));
+    this.store.dispatch(actions.toggleAll({ allCompleted: this.allCompleted }));
   }
 }

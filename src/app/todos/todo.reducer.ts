@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { Todo } from './models/todo.model';
-import { createTodo, deleteTodo, editTodo, toogleAll, toogleTodo } from './todo.actions';
+import { createTodo, deleteTodo, editTodo, removeAllCompleted, toggleAll, toogleTodo } from './todo.actions';
 
 export const initialState: Todo[] = [
   new Todo('Save the world'),
@@ -38,11 +38,13 @@ export const todoReducer = createReducer(
 
   on(deleteTodo, (state, { id }) => state.filter(todo => todo.id !== id)),
 
-  on(toogleAll, (state, { allCompleted }) => state.map(todo => {
+  on(toggleAll, (state, { allCompleted }) => state.map(todo => {
     const changedTodo: Todo = new Todo(todo.text);
     changedTodo.id = todo.id;
     changedTodo.completed = allCompleted;
 
     return changedTodo;
   })),
+
+  on(removeAllCompleted, (state) => state.filter(todo => !todo.completed)),
 );

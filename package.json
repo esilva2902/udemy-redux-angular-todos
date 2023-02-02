@@ -1,6 +1,6 @@
 {
   "name": "todo-app",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "ng": "ng",
     "ng-dev": "clear && ng serve --port 4215 --poll 3000",

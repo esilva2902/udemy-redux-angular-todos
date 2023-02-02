@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducers } from './app.reducer';
+
 import { TodosModule } from './todos/todos.module';
-import { todoReducer } from './todos/todo.reducer';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -17,7 +18,7 @@ import { FooterComponent } from './footer/footer.component';
   imports: [
     BrowserModule,
 
-    StoreModule.forRoot({ todos: todoReducer }),
+    StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode
